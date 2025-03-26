@@ -2,17 +2,19 @@ package hello.servlet.web.frontcontroller.V5;
 
 import hello.servlet.web.frontcontroller.ModelView;
 import hello.servlet.web.frontcontroller.MyView;
-import hello.servlet.web.frontcontroller.V3.ControllerV3;
 import hello.servlet.web.frontcontroller.V3.controller.MemberFormControllerV3;
 import hello.servlet.web.frontcontroller.V3.controller.MemberListControllerV3;
 import hello.servlet.web.frontcontroller.V3.controller.MemberSaveControllerV3;
+import hello.servlet.web.frontcontroller.V4.controller.MemberFormControllerV4;
+import hello.servlet.web.frontcontroller.V4.controller.MemberListControllerV4;
+import hello.servlet.web.frontcontroller.V4.controller.MemberSaveControllerV4;
 import hello.servlet.web.frontcontroller.V5.adapter.ControllerV3HandlerAdapter;
+import hello.servlet.web.frontcontroller.V5.adapter.ControllerV4HandlerAdapter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.HandlerAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,10 +37,16 @@ public class FrontControllerServletV5 extends HttpServlet {
         handlerMappingMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members/save", new MemberSaveControllerV3());
         handlerMappingMap.put("/front-controller/v5/v3/members", new MemberListControllerV3());
+
+        // V4 추가
+        handlerMappingMap.put("/front-controller/v5/v4/members/new-form", new MemberFormControllerV4());
+        handlerMappingMap.put("/front-controller/v5/v4/members/save", new MemberSaveControllerV4());
+        handlerMappingMap.put("/front-controller/v5/v4/members", new MemberListControllerV4());
     }
 
     private void initHandlerAdapters() {
         handlerAdapters.add(new ControllerV3HandlerAdapter());
+        handlerAdapters.add(new ControllerV4HandlerAdapter());
     }
 
     @Override
